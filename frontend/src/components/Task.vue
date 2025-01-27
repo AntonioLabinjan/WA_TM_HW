@@ -113,16 +113,14 @@
     };
 
     try {
-      // Dohvatite token iz localStorage-a (ili drugog spremišta)
       let token = req.headers.authorization.split(' ')[1];
 
       if (!token) {
         alert("Nisi prijavljen. Preusmjeravamo na prijavu...");
-        window.location.href = "/login"; // Prilagodite URL prema vašem routeru
+        window.location.href = "/login"; 
         return;
       }
 
-      // Pošaljite zahtjev s autorizacijskim headerom
       const response = await axios.post("http://localhost:8000/tasks", noviZadatak, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -133,7 +131,6 @@
 
       emit("saveTask", noviZadatak);
 
-      // Resetiraj inpute
       naslovZadatka.value = "";
       opisZadatka.value = "";
       tagoviZadatka.value = "";
